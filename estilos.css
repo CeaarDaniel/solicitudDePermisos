@@ -1,0 +1,234 @@
+
+      /*Estilos para los scroll*/
+          ::-webkit-scrollbar{
+            width: 7px; /*ancho del scroll*/
+            height: 7px; /*Alto del scroll esto sirve para la barra horizontal*/
+          }
+
+          /* estilo para la parte que puedes arrastrar*/
+          *::-webkit-scrollbar-thumb {
+            background-color: #021688a4;
+            border-radius: 20px;
+            border:rgb(255, 255, 255)
+          }
+
+          /*estilo del fondo del scroll */
+          *::-webkit-scrollbar-track {
+            border-radius: 1px;  
+            background-color:rgb(255, 255, 255)
+          }
+      /*--- Fin estilos para los scroll ---*/
+
+    /* Estilos para ocultar elementos durante la impresión */
+
+          @media print {
+            header, footer {
+              display: none !important;
+            }
+
+            title {
+              display: none;
+              visibility: hidden;
+            }
+            body * {
+              visibility: hidden;
+            }
+            #formulario , #formulario-llenado{
+              visibility: hidden;
+            }
+            #formulario-a-imprimir * {
+              visibility: visible;
+            }
+
+            #formulario-a-imprimir {
+              position: absolute;
+              left: 0;
+              top: 0;
+            }
+
+            /*Ocular los iconos de los input de fecha y hora*/
+            input[type="date"]::-webkit-calendar-picker-indicator,
+            input[type="time"]::-webkit-calendar-picker-indicator {
+              opacity: 0;
+          }
+
+          @page {
+            margin-left: 1cm; /* Margen izquierdo de 1 centímetro */
+            margin-right: 1cm; /* Margen derecho de 1 centímetro */
+            margin-top: 0.8cm; /* Margen superior */
+            margin-bottom: 0.8cm; /* Margen inferior*/
+          }
+
+            img {
+                display: block; /* Asegura que las imágenes estén visibles en la impresión */
+            }
+          }
+    /*Fin de estilo de impresion*/
+    
+      /*Estilos del formulario de llenado*/
+            input{
+              transition: 0.4s ease-in-out;
+              border: 0px;
+              margin-top: 5px;
+              border-bottom: 1px solid #021f6e57; /* Establece el borde inferior */
+              height: 30px;
+              font-family: 'Font Awesome 5 Free';
+              font-weight: 900; /* Esto es necesario para mostrar el icono correctamente */
+            }
+
+
+            /* Reset de estilos para input */
+            input:focus {
+              border: none;
+              outline: none;
+              background: none;
+            }
+
+
+            input:focus::placeholder {
+              /* Estilos para el placeholder cuando el input está enfocado */
+              color: transparent; /* Ocultar el texto del placeholder cuando está enfocado */
+            }
+
+            .invalido {
+              border-color: rgb(255, 0, 0);
+            }
+
+            textarea{
+              transition: 0.4s ease-in-out;
+              border: 0px;
+              margin-top: 5px;
+              border-bottom: 1px solid #021f6e57; /* Establece el borde inferior */
+              font-family: 'Font Awesome 5 Free';
+              font-weight: 900; /* Esto es necesario para mostrar el icono correctamente */
+            }
+          
+
+            select {
+              transition: 0.4s ease-in-out;
+              border: 0px;
+              margin-top: 5px;
+              border-bottom: 1px solid #021f6e57; /* Establece el borde inferior */
+              font-family: 'Font Awesome 5 Free';
+              font-weight: 900; /* Esto es necesario para mostrar el icono correctamente */
+            }
+
+            .in:focus {
+              /* Estilo cuando el input está seleccionado */
+              color: #021f6e;
+              outline: 0;
+              box-shadow: 0 0 0 0.13rem #021f6e57;
+              border-radius: 8px;
+              margin-left: 5px;
+            }
+
+            .radio {
+              appearance: none;
+    
+              top: 4px;
+              border-radius: 50%;
+              width: 16px;
+              height: 16px;
+            
+              border: 2px solid #021f6e57;;
+              transition: 0.2s all linear;
+              margin-left: 10px;
+              font-family: 'Font Awesome 5 Free';
+            
+              position: relative;
+              top: 1px;
+            }
+            
+            .radio:checked {
+              border: 5px solid #021e6e;
+            }
+            
+            .form-check-label{
+              font-family: 'Font Awesome 5 Free';
+            }
+      /*Fin de los estilos del formulario de llenado*/
+
+
+      /*Boton imprimir*/
+      .imprimir{
+        color: #ffffff; /* Color del texto */
+        border-radius: 20%; /* Borde del boton */
+        padding: 3px; /* Relleno del boton */
+        position: fixed;
+        bottom: 40px;
+        right: 20px;
+        transition: all 300ms ease 0ms;
+        box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .imprimir:hover {
+        transform: translateY(-7px);
+      }
+      /*Fin Boton imprimir*/
+
+      /*Boton volver*/
+      .volver{
+        color: #ffffff; /* Color del texto */
+        border-radius: 20%; /* Borde del boton */
+        padding: 3px; /* Relleno del boton */
+        position: fixed;
+        bottom: 40px;
+        right: 70px;
+        transition: all 300ms ease 0ms;
+        box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .volver:hover {
+        transform: translateY(-7px);
+      }
+      /*fin Boton volver*/
+
+
+    .boton{
+      background-color: #021e6b;
+      color: #fff;
+    }
+    
+    .boton:hover{
+      background-color: #00032c;
+      color: #fff;
+    }
+
+    .card{
+      transition: all 0.3s ease;
+    }
+
+    .card:hover{
+      background-color: #6c757d;
+      color: #fff;
+    }
+
+    a{
+      cursor: pointer;
+       text-decoration:none; 
+       color:black
+    }
+
+
+    #contenido{
+      transition: transform 0.4s ease-in-out;
+    }
+    
+
+    .consecutivo{ /*estilo para el ID del permiso*/
+      position: fixed;
+        bottom: 1px;
+        right: 20px;
+    }
+
+
+      /*Transicion al cambiar de pagina con ajax*/
+      .ocultar-mostrar{
+        transform: scale(0);
+        transition: transform 0.4s ease-in-out;
+      }
+    /*fin efecto para la transicion*/ 
+
+
+
+ 
