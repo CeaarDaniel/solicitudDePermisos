@@ -222,6 +222,8 @@ else if($opcion=='5'){
       $SOLICITADO =  isset($_POST['SOLICITADO']) ? $_POST['SOLICITADO'] : '';
       $TOTALHRSACUMU =  isset($_POST['TOTALHRSACUMU']) ? $_POST['TOTALHRSACUMU'] : '';
    
+      $FECHA_SOLICITUD = (DateTime::createFromFormat('Y-m-d\TH:i', $FECHA_SOLICITUD))->format('Y-m-d H:i:s');
+      
          if($_POST['FECHAPERMU2']== null || $_POST['FECHAPERMU2']=='' || empty($_POST['FECHAPERMU2']))
                $FECHAPERMU2 = NULL;
    

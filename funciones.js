@@ -116,10 +116,29 @@ function imprimirPermiso() {
                     alert("La hora de inicio no puede ser mayor a la hora de fin")
 
                 else {
-                    var formData = new FormData(fmllenado);
-                    var fechaArray = formData.get('FECHA_SOLICITUD').split('-');
-                    var fechaSolicitud = fechaArray[2] + '/' + fechaArray[1] + '/' + fechaArray[0];
 
+
+                    var formData = new FormData(fmllenado);
+
+                    //Si es una permuta hay que obtener tambien la hora de registro del permiso
+                    if(formData.get("tipoPermiso") == "permuta"){
+                        
+                        // Separar la fecha y la hora
+                        var partes = formData.get('FECHA_SOLICITUD').split('T'); //Valor del datetime-local de form de permuta
+                        var fechaArray = partes[0].split('-'); // "YYYY-MM-DD" SE OBTIENE LA FECHA
+                        var hora = partes[1];  // "HH:MM" SE OBTIENEN LOS MINUTOS
+                        
+                    
+                        // Convierte la fecha de YYYY-MM-DD a DD/MM/YYYY para mostrarla en la impresion, este valor no se manda al servidor para su guardado 
+                        var fechaSolicitud = fechaArray[2] + '/' + fechaArray[1] + '/' + fechaArray[0]+ ' ' + hora; 
+                    }
+
+                    else {
+                        var fechaArray = formData.get('FECHA_SOLICITUD').split('-'); //LOS DEMAS FORMULARIOS NO TIENEN EL TIME
+                        var fechaSolicitud = fechaArray[2] + '/' + fechaArray[1] + '/' + fechaArray[0];
+                    }
+
+                    
                     var DEL = formData.get('FECHA_PERMISOA').split('-');
                     var DEL = DEL[2] + '/' + DEL[1] + '/' + DEL[0];
 
@@ -871,12 +890,17 @@ function imprimirPermiso() {
                             //alert("La hora de inicio de la permuta no puede ser mayor que la hora de fin de la permuta")
 
                         //else {
-                            if (formData.get("FECHA_SOLICITUD") > formData.get("FECHA_PERMISOA"))
+
+                       let fechaHoraPermiso= new Date (formData.get("FECHA_PERMISOA") +'T'+ formData.get("HORA1"))
+                       let fechaHoraSolicitud = new Date (formData.get("FECHA_SOLICITUD"))
+
+                            if (fechaHoraSolicitud.getTime() > fechaHoraPermiso.getTime())
                                 SOLICITADO = "DESPUES"
 
-                            else if (formData.get("FECHA_SOLICITUD") < formData.get("FECHA_PERMISOA"))
+                            else if (fechaHoraSolicitud.getTime() <=  fechaHoraPermiso.getTime())
                                 SOLICITADO = "ANTES"
 
+                           /*
                             else if (formData.get("FECHA_SOLICITUD") == formData.get("FECHA_PERMISOA")) {
                                 var fechaHoraActual = new Date();
                                 var horaActual = fechaHoraActual.getHours();
@@ -890,6 +914,7 @@ function imprimirPermiso() {
                                 if (formData.get("HORA1") >= horaActualf) SOLICITADO = "ANTES";
                                 else if (formData.get("HORA1") < horaActualf) SOLICITADO = "DESPUES"
                             }
+                            */
 
                             formData.append("SOLICITADO", SOLICITADO)
                             var FECHAPERMU1 = formData.get('FECHAPERMU1').split('-');
@@ -1745,7 +1770,7 @@ function editarRegistro(event) {
                                                                         <div class="col-12 my-2 px-0">
                                                                             <div class="d-flex flex-column flex-wrap"> 
                                                                                 <label class="input-group fw-bold" style="max-width:240px;">FECHA DE REGISTRO</label>
-                                                                                <input id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" class="in" type="date" style="max-width:360px;" value="${dataFECHA_SOLICITUD}" readonly>
+                                                                                <input id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" class="in" type="datetime-local" style="max-width:360px;" value="${dataFECHA_SOLICITUD}" readonly>
                                                                             </div>
                                                                         </div>
                                                                             <div class="col-12 col-md-5 col-xl-3 my-2">
@@ -2192,8 +2217,24 @@ function actualizarRegistro() {
 
                 else {
                     var formData = new FormData(fmllenado);
-                    var fechaArray = formData.get('FECHA_SOLICITUD').split('-');
-                    var fechaSolicitud = fechaArray[2] + '/' + fechaArray[1] + '/' + fechaArray[0];
+
+                    //Si es una permuta hay que obtener tambien la hora de registro del permiso
+                    if(tipoPermiso == "7"){
+    
+                        // Separar la fecha y la hora
+                        var partes = formData.get('FECHA_SOLICITUD').split('T'); //Valor del datetime-local de form de permuta
+                        var fechaArray = partes[0].split('-'); // "YYYY-MM-DD" SE OBTIENE LA FECHA
+                        var hora = partes[1];  // "HH:MM" SE OBTIENEN LOS MINUTOS
+                        
+                    
+                        // Convierte la fecha de YYYY-MM-DD a DD/MM/YYYY para mostrarla en la impresion, este valor no se manda al servidor para su guardado 
+                        var fechaSolicitud = fechaArray[2] + '/' + fechaArray[1] + '/' + fechaArray[0]+ ' ' + hora; 
+                    }
+
+                    else {
+                        var fechaArray = formData.get('FECHA_SOLICITUD').split('-'); //LOS DEMAS FORMULARIOS NO TIENE EL TIME
+                        var fechaSolicitud = fechaArray[2] + '/' + fechaArray[1] + '/' + fechaArray[0];
+                    }
 
                     var DEL = formData.get('FECHA_PERMISOA').split('-');
                     var DEL = DEL[2] + '/' + DEL[1] + '/' + DEL[0];
@@ -2231,16 +2272,16 @@ function actualizarRegistro() {
                     if (tipoPermiso == "7") {
                         var SOLICITADO = "";
 
-                        //if (formData.get("HORARIOPERMU1") > formData.get("HORARIOPERMU2") || formData.get("HORARIOPERMU3") > formData.get("HORARIOPERMU4") || formData.get("HORARIOPERMU5") > formData.get("HORARIOPERMU6"))
-                            //alert("La hora de inicio de la permuta no puede ser mayor que la hora de fin de la permuta")
-                        
-                        //else {
-                            if (formData.get("FECHA_SOLICITUD") > formData.get("FECHA_PERMISOA"))
-                                SOLICITADO = "DESPUES"
-                        
-                            else if (formData.get("FECHA_SOLICITUD") < formData.get("FECHA_PERMISOA"))
-                                SOLICITADO = "ANTES"
-                        
+                        let fechaHoraPermiso= new Date (formData.get("FECHA_PERMISOA") +'T'+ formData.get("HORA1"))
+                        let fechaHoraSolicitud = new Date (formData.get("FECHA_SOLICITUD"))
+
+                        if (fechaHoraSolicitud.getTime() > fechaHoraPermiso.getTime())
+                            SOLICITADO = "DESPUES"
+
+                        else if (fechaHoraSolicitud.getTime() <=  fechaHoraPermiso.getTime())
+                            SOLICITADO = "ANTES"
+
+                        /*
                             else if (formData.get("FECHA_SOLICITUD") == formData.get("FECHA_PERMISOA")) {
                                 var fechaHoraActual = new Date();
                                 var horaActual = fechaHoraActual.getHours();
@@ -2254,6 +2295,7 @@ function actualizarRegistro() {
                                 if (formData.get("HORA1") >= horaActualf) SOLICITADO = "ANTES";
                                 else if (formData.get("HORA1") < horaActualf) SOLICITADO = "DESPUES"
                             }
+                        */
                         
                             var FECHAPERMU1 = formData.get('FECHAPERMU1').split('-');
                             FECHAPERMU1 = FECHAPERMU1[2] + '/' + FECHAPERMU1[1] + '/' + FECHAPERMU1[0];
@@ -2268,7 +2310,7 @@ function actualizarRegistro() {
                             else {
                                 var fin = new Date('1970-01-01T' + formData.get("HORARIOPERMU2") );
                                 var HORARIOPERMU2 = '1970-01-01 '+ formData.get("HORARIOPERMU2");
-                        }
+                            }
                             // Restar las horas
                             var diferencia = fin.getTime() - inicio.getTime();
                         

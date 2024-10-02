@@ -124,7 +124,7 @@
                             <div class="col-12 my-2 px-0">
                                 <div class="d-flex flex-column flex-wrap"> 
                                     <label class="input-group fw-bold" style="max-width:240px;">FECHA DE REGISTRO</label>
-                                    <input id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" class="in" type="date" style="max-width:360px;" value="<?php echo date("Y-m-d")?>" readonly>
+                                    <input id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" class="in" type="datetime-local" style="max-width:360px;" value="<?php echo date("Y-m-d H:i")?>" readonly>
                                 </div>
                             </div>
                                 <div class="col-12 my-2 px-0">

@@ -285,7 +285,7 @@ include('./base_de_datos/conexion.php');
                                     </div>
                                     <div class="row my-2 border border-secondary border-secondary">
                                         <div class="col-6 border-end border-secondary"><p class="py-0 my-0 text-break">'.$row['CODIGO_SHOP'].'</p></div>
-                                        <div class="col-6"><p class="py-0 my-0 text-break">'.date("d/m/Y", strtoTime($row['FECHA_SOLICITUD'])).'</p></div>
+                                        <div class="col-6"><p class="py-0 my-0 text-break">'.date("d/m/Y H:i", strtoTime($row['FECHA_SOLICITUD'])).'</p></div>
                                     </div>
                                     <div class="row my-2 border border-secondary border-secondary">
                                         <div class="col-6 fw-bold border-end border-secondary">Fecha de permiso</div>
