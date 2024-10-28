@@ -73,11 +73,11 @@
                                 </div>
                                 <div class="col-12 col-md-5 col-xl-3 my-2">
                                     <label class="input-group fw-bold" style="max-width:240px;">DEL</label>
-                                    <input id="FECHA_PERMISOA" name="FECHA_PERMISOA" class="in" type="date" style="max-width:auto;" required/>
+                                    <input id="FECHA_PERMISOA" name="FECHA_PERMISOA" class="in" type="date" min="<?php echo date('Y-m-d', strtotime('-3 months')); ?>" max="<?php echo date('Y-m-d', strtotime('+ 1 year')); ?>" style="max-width:auto;" required/>
                                 </div>
                                 <div class="col-12 col-md-5 col-xl-3 my-2">
                                     <label class="input-group fw-bold" style="max-width:240px;">AL</label>
-                                    <input id="FECHA_PERMISOB" name="FECHA_PERMISOB" class="in" type="date" style="max-width:auto;" required/>
+                                    <input id="FECHA_PERMISOB" name="FECHA_PERMISOB" class="in" type="date" min="<?php echo date('Y-m-d', strtotime('-3 months')); ?>" max="<?php echo date('Y-m-d', strtotime('+ 1 year')); ?>" style="max-width:auto;" required/>
                                 </div>
                                 <div class="col-12 col-md-5 col-xl-3 my-2">
                                     <label class="input-group fw-bold" style="max-width:240px;">DE</label>
